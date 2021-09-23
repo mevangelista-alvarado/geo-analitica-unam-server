@@ -6,10 +6,10 @@ from psycogreen.gevent import patch_psycopg
 
 # Check this guide to optimize gunicorn WORKERS and WORKER CONNECTIONS
 # https://medium.com/building-the-system/gunicorn-3-means-of-concurrency-efbb547674b7
-workers = int(environ.get('GUNICORN_WORKERS', '3'))
-worker_class = 'gevent'
+# workers = int(environ.get('GUNICORN_WORKERS', '3'))
+# worker_class = 'gevent'
 # Number of clients a worker can manage, this is: total_connections = workers * connections
-worker_connections = int(environ.get('GUNICORN_WORKER_CONNECTIONS', '100'))
+# worker_connections = int(environ.get('GUNICORN_WORKER_CONNECTIONS', '100'))
 
 timeout = int(environ.get('GUNICORN_TIMEOUT', '120'))
 bind = '0.0.0.0:' + environ.get('PORT', '8000')

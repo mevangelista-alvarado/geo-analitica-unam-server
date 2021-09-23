@@ -19,17 +19,12 @@ python-dotenv==0.19.0
 
 # heroku requirements
 dj-database-url==0.5.0
-gunicorn==19.9.0
-whitenoise==2.0.6
-psycopg2==2.7.7
-django-heroku==0.3.1
+gunicorn==20.1.0
+whitenoise==5.2.0
+psycopg2-binary==2.8.6
 
 # Gunicorn performance
 django-db-geventpool==3.1.0
 psycogreen==1.0.1
 gevent==1.4.0
 greenlet==0.4.15
-
-# Others
-rq==1.10.0
-
