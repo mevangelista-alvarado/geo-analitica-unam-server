@@ -20,7 +20,8 @@ python-dotenv==0.19.0
 # heroku requirements
 dj-database-url==0.5.0
 gunicorn==19.9.0
-whitenoise==2.0.6
+whitenoise==4.1.2
+# whitenoise==2.0.6
 psycopg2==2.7.7
 django-heroku==0.3.1
 
