@@ -28,7 +28,7 @@ max_requests = int(environ.get('GUNICORN_MAX_REQUESTS', '0'))
 max_requests_jitter = int(environ.get('GUNICORN_MAX_REQUESTS_JITTER', '0'))
 
 # Only support TSL v1.2 in order to avoid old browsers with untrusty certificates and well know issues
-ssl_version = 'TLSv1_2'
+# ssl_version = 'TLSv1_2'
 
 def post_fork(server, worker):
     ''' This patch psycopg to work with gevents '''
