@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h4>Bienvenido:</h4>
+<div>
+    <p>El Laboratorio de Geometría Aplicada dirigido por el Dr. Pablo Suárez Serrato te da la bienvenida al curso de Geometría Analítica I impartido en la Facultad de Ciencias de la UNAM.</p>
+
+    <p>El curso esta basado en los libros:
+    <ul>
+        <li>Geometría Analítica de Ana Irene Ramírez-Galarza</li>
+        <li>Introducción Analítica a las Geometrías de Javier Bracho</li>
+    </ul>
+    <a href="{% url 'biblio' %}">aquí</a> puedes consultar el temario del curso del curso.</p>
+
+    <p>Si eres nuevo debes registrate <a href="{% url 'alumno-signup'%}">aquí</a> y si ya estas registrado puedes iniciar sesión <a href="{% url 'login'%}">aquí</a></p>
+
+    <p>En este curso veremos diferentes formas de entender la geometría.
+    </p>
+    <p>Familiarizar con los conceptos geométricos fundamentales como: simetría, espacio vectorial, dimensión y transformaciones, contextuándolos en el tratamiento coordenado de los objetivos geométricos más sencillos correspondientes a las ecuaciones y desigualdades de primer y segundo grados en dos variables.
+    </p>
+    <p>Conocer los conceptos geométricos elementales, coordenadas cartesianas y lugares geométricos. Así como comprender el concepto de trigonometría y su interpretación geométrica.
+    <p>
+    </p>Recordar el concepto de vector y su interpretación geométrica, y conocer las principales operaciones que se pueden realizar entre vectores. Entender la manera de expresar algebraicamente la recta, el plano, semiplanos y semiespacios, así como las ideas geométricas asociadas.
+    </p>
+    <p>Por ultimo, comprender la idea de cónica, e interpretar algebraicamente los lugares geométricos conocidos como parábola, elipse e hipérbola.
+    </p>
+    <!--
+    <p>El curso tiene un enfoque moderno ya que a la par de los conociemientos adquiridos se ven aplicaciones de los mismos en cuardenos de google colab escritos en lenguaje Python, que pueden ser consultados desde culaquier navegador web y donde el alumno no necesita descargar nada adicional a su computadora.</p>
+    -->
+
+</div>
+<div>
+    <p>Servidor desarollado por el <a href="https://github.com/appliedgeometry" target="_blank">Laboratorio de Geometría Aplicada</a> (<a href="{% url 'credits' %}">Créditos</a>).</p>
+</div>
+{% endblock content %}

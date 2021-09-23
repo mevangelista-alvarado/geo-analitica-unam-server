@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+<head>
+    <link rel="stylesheet" type="text/css" href="css/site.css" />
+    <script type="text/javascript" src="js/cssrefresh.js"></script>
+</head>
+{% block content %}
+    <div>
+        <h1>Geometría Analítica</h1>
+    </div>
+    <div id="examen_tiempo" class="center" style="visibility:hidden;">
+        <!--<FONT SIZE=5> TIEMPO </font>-->
+        <FONT SIZE=7 id="cronometro">00 : 00 : 00</font>
+    </div>
+
+    <div id="tiempo_regresivo" class="center" >
+        El examen comenzará en: <h2 style="color:yellow;"><span id="cuentaRegresiva"></span></h2>
+    </div>
+    <div>
+        <h3>Indicaciones Generales</h3>
+        <ol>
+            <li>Tienes 75 minutos para resolver 5 problemas sencillos.</li>
+            <!-- <li>Después de los 50 minutos la página se actuliza generando un nuevo examen.</li> -->
+            <li>No dejar casillas vacías.</li>
+            <li>Una vez enviado el Quiz no podrás realizar modificaciones.</li>
+            <li>No utilizar aproximaciones decimales en tus cálculos.</li>
+        </ol>
+        <!--
+        <h3>Sintaxis</h3>
+        <ol>
+            <li>Para ingresar un producto, por ejemplo, $(2)(3)=2\times 3=2\cdot 3$, debes escribir lo siguiente: 2*3 ó 3*2 (sintaxis de python).</li>
+            <li>Para ingresar un número negativo, por ejemplo, $-4 = (-1)(4) = -1\cdot 4$, debes escribir lo siguiente: -4 ó -1*4 ó (-1)*4 (sintaxis de python).</li>
+            <li>Para ingresar una fracción, por ejemplo, $\frac{1}{2}$, debes escribir lo siguiente: 1/2 (sintaxis de python).</li>
+            <li>Para ingresar una raíz cuadrada, por ejemplo, $\sqrt{2}$, debes escribir lo siguiente: sqrt(2) (sintaxis de python).</li>
+            <li>Puedes utilizar cualquier combinación válida de todas las anteriores</li>
+            <li>Si necesitas ingresar funciones especiales(trigonométricas) recuerda hacer lo siguiente: $cos(4)$ = cos(4), $sen(4)$ = sin(4) o $\sqrt{2}$ = sqrt(2) por ejemplo.</li>
+            <li> Para números, funciones o fracciones negativas son válidas las siguientes opciones:
+            $\sqrt{2}$ = -sqrt(2), $\sqrt{2}$ = -1*sqrt(2) o $-\frac{1}{\sqrt{2}}$ = -1/sqrt(2).</li>
+        </ol>
+        -->
+    </div>
+    <form id="formEjemplo" method='POST' action="{% url 'check_examen' %}" >
+        {% csrf_token %}
+        <div style="display: none;">
+            <input id="cronometro_form" name="tiempo" type="text" >
+            <input name="tema" type="text" value="{{examen.tema}}">{{ examen.tema }}
+            <input name="_id" type="text" value="{{examen.id}}">{{ examen.id }}
+        </div>
+        <div class="left">
+            <h2>{{ examen.tema }}</h2>
+        </div>
+        <p></p>
+        <div>
+            <div>
+                {% for pregunta in examen.preguntas %}
+                    <p>Pregunta {{ pregunta.0 }}: {{ pregunta.2 }}</p>
+                    {% if pregunta.5 == 'input' %}
+                        <div style="display: none;">
+                            <!-- Pregunta -->
+                            <input name="pregunta{{ pregunta.0 }}" type="text" value="{{ pregunta.2 }}">
+                            <!-- Respuesta correcta -->
+                            <input name="respuesta{{ pregunta.0 }}" type="text" value="{{ pregunta.3 }}">
+                        </div>
+                        <br>
+                        <!-- Respuesta alumno -->
+                        Respuesta: <input name="alumno{{ pregunta.0 }}" type="text" required>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <p></p>
+        <br>
+        <p></p>
+        <div>
+            <button id="enviar_examen" type="button" class="save btn btn-default">Enviar Examen</button>
+        </div>
+    </form>
+    {% include "examenes/detail_js.html" %}
+{% endblock %}
+

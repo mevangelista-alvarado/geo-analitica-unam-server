@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>EXAMEN REVISADO EXITOSAMENTE</h2>
+    <div style="font-size: 18px;">
+        <h2>La calificación {{ calificacion_final }} fue asignada al número de cuenta: {{ numero_cuenta }}.</h2>
+    </div>
+    <h2>RESPUESTAS</h2>
+    <div>
+        {% for item in solucion.examen_result %}
+        <div>
+            * Pregunta: {{item.0}}
+        </div>
+        <br>
+        <div>
+            * Respuesta: {{ item.1 }}
+        </div>
+        <div>
+            <br>
+            <strong> Tu respuesta: {{ item.2 }} </strong>
+            <p>
+            Puntuación: {{ item.3 }}
+            </p>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

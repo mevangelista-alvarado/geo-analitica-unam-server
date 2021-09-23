@@ -1,0 +1,80 @@
+{% load static %}
+
+<html>
+<!-- Head -->
+<head>
+<style>
+body {
+    color: white;
+    background-color: black;
+}
+a {
+    color: white;
+}
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}
+.center{
+    text-align: center;
+}
+</style>
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<!-- Body -->
+<head>
+    <!--<img src="{% static 'img/unam.png' %}"/>-->
+    <div class="center">
+        <h1>Curso de Geometría Analítica</h1>
+    </div>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_student %}
+            Login as alumno: {{request.user.email}} /
+            <a href="{% url 'profile' %}"> Mi Perfil</a> /
+            <a href="{% url 'sesiones' %}">Forma de Calificar (y/o Horario)</a> /
+            <a href="{% url 'biblio' %}"> Temario </a> /
+            <a href="{% url 'examenes_list' %}"> Examenes</a> /
+            <!--
+            <a href="{% url 'logout' %}"> Quizzes</a> /
+            -->
+        {% else %}
+            Login as profesor: {{request.user.username}} /
+            <a href="{% url 'profile' %}"> Mi Perfil</a> /
+            <a href="{% url 'logout' %}"> Grupos</a> /
+            <a href="{% url 'logout' %}"> Examenes</a> /
+            <!--
+            <a href="{% url 'logout' %}"> Quizzes</a> /
+            -->
+        {% endif %}
+        <a href="{% url 'logout' %}"> Salir </a>
+    {% else %}
+        <a href="{% url 'login' %}"> Iniciar Sesión</a>
+        /
+        <a href="{% url 'alumno-signup' %}"> Registrarse</a>
+    {% endif %}
+    <br>
+    {% block content %}
+    {% endblock %}
+</body>
+<!-- Footer -->
+<footer>
+<div>
+    <p>Este servidor esta en fase Beta, si encuentras algún error o tienes alguna sugerencia de mejora, por favor envia un email a <a href="mailto:miguel.eva.alv@ciencias.unam.mx" target="_blank">miguel.eva.alv@ciencias.unam.mx</a>
+    {% if not is_home %}
+        <h3><a href="/">Regresar</a></h3>
+    {% endif %}
+    </p>
+</div>
+</footer>

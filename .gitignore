@@ -1,0 +1,6 @@
+*.pyc
+db.sqlite3
+*.DS_Store
+curso/.env
+user.py
+initial_data.txt

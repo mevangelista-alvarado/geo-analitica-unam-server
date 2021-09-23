@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h4>Bienvenido: {{ user.email }}</h4>
+<div>
+    <h4> Tus datos son los siguientes:</h4>
+    <br>
+    <b>Cuenta UNAM:</b>
+    <br>{{ user.matricula }}<br>
+    <br>
+    <b>Nombre:</b>
+    <br>{{ user.nombre }}<br>
+    <br>
+    <b>Email:</b>
+    <br>{{ user.email }}<br>
+    <br>
+    <b>Curso:</b>
+    <br>
+    {% if user.curso == 0 %}
+        2022-1 (Geometría Analítica I).<br>
+    {% else %}
+        No hay curso registrado.<br>
+    {% endif %}
+    <br>
+    <b>Username:</b>
+    <br>{{ user.username }}
+    <br>
+    <h4> Tus examenes son:</h4>
+    {% for examen in examenes %}
+        <b>Tema: {{ examen.tema }}</b> <br>
+        <b>Calificación: {{ examen.calificacion }} </b> <br>
+        <br>
+    {% empty %}
+        <b> No haz realizado ningu examen aún. </b>
+    {% endfor %}
+</div>
+<br>
+<div>
+    Si tienes algún dato incorrecto avisa a tu profesor ó envía un email a <a href="mailto:miguel.eva.alv@ciencias.unam.mx" target="_blank">miguel.eva.alv@ciencias.unam.mx</a> explicando cual es error y por cual dato debe ser reemplazado, así como justificar la razón del cambio.
+</div>
+{% endblock content %}
+
